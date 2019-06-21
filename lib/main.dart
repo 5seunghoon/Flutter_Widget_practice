@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'bloc/main_bloc.dart';
+import 'view/main_view.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final MainBloc _bloc = MainBloc();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,14 +15,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: Center(
-          child: Text("HELLO"),
+        appBar: AppBar(
+          title: Icon(Icons.card_travel),
         ),
-        floatingActionButton: Container(
+        body: Center(
+          child: BodyStatefulWidget(),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blue,
           child: Icon(
             Icons.add,
-            color: Colors.blue,
+            color: Colors.white,
           ),
+          onPressed: _bloc.fabClick,
         ),
       ),
     );
